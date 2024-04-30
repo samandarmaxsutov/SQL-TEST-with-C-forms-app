@@ -16,7 +16,7 @@
 <img src="https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/assets/101328871/20b679fb-7f40-4d61-a159-a5b6de7a1389"></img>
 
 <h3>Create TestTableClass</h3>
-<a href="https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/blob/master/MyForm.h](https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/blob/master/TestTableClass.cpp">TestTableClass</a>
+<a href="[https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/blob/master/MyForm.h](https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/blob/master/TestTableClass.cpp](https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/blob/master/TestTableClass.h)">TestTableClass</a>
 <h6>
     #pragma once
 

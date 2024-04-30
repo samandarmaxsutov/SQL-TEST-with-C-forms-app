@@ -16,7 +16,8 @@
 <img src="https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/assets/101328871/20b679fb-7f40-4d61-a159-a5b6de7a1389"></img>
 
 <h3>create TestTableClass</h3>
-<h6>#pragma once
+<h6>
+    #pragma once
 
 using namespace System;
 
@@ -29,7 +30,8 @@ private:
     bool test_bool;
 
 public:
-    // Constructor
+    //Constructors
+    
     TestTableClass() : id(0), test_string(""), test_int(0), test_bool(false) {}
 
     TestTableClass(int id, String^ test_string, int test_int, bool test_bool) {
@@ -75,4 +77,53 @@ public:
 };
 </h6>
 
+<h3>Show Button</h3>
+<img src="https://github.com/samandarmaxsutov/SQL-TEST-with-C-forms-app/assets/101328871/758b8878-6ceb-4971-94de-8e69be238978"></img>
+
+<h6>
+    private: System::Void button1_Click(System::Object^ sender, System::EventArgs^ e) {
+	try {
+		// Create a new SqlConnection
+		String^ connectionString = "Data Source=(localdb)\\ProjectModels;Initial Catalog=MyTestDatabase;Integrated Security=True";
+		SqlConnection^ sqlConn = gcnew SqlConnection(connectionString);
+		sqlConn->Open(); // Open the connection
+
+		// Prepare SQL command
+		String^ query = "SELECT * FROM TestTable";
+		SqlCommand^ command = gcnew SqlCommand(query, sqlConn);
+		SqlDataReader^ reader = command->ExecuteReader();
+
+		// Create a list 
+		List<TestTableClass^>^ list = gcnew List<TestTableClass^>;
+
+		// Read each row from the database
+		while (reader->Read()) {
+			int id = reader->GetInt32(0); // Assuming the first column is 'id'
+			String^ testString = reader->GetString(1); // Assuming the second column is 'test_string'
+			int testInt = reader->GetInt32(2); // Assuming the third column is 'test_int'
+			bool testBool = reader->GetBoolean(3); // Assuming the fourth column is 'test_bool'
+
+			// Create a new TestTableClass
+			TestTableClass^ newItem = gcnew TestTableClass(id, testString, testInt, testBool);
+
+			// Add  to the list
+			list->Add(newItem);
+		}
+
+		String^ text = "";
+		for (int i = 0; i < list->Count; i++) {
+			TestTableClass^ a = list[i]; 
+
+			text += "ID: " + a->GetId() + ", String: " + a->GetTestString() + ", Int: " + a->GetTestInt().ToString() + ", Bool: " + a->GetTestBool().ToString() + ";\n";
+		}
+		label1->Text = text;
+		reader->Close(); // Close the SqlDataReader
+		sqlConn->Close(); // Close the SqlConnection
+	}
+	catch (Exception^ e) {
+		MessageBox::Show("Error: " + e->Message);
+	}
+
+}
+</h6>
 
